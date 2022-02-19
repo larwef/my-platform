@@ -3,14 +3,12 @@
 # exit when any command fails
 set -e
 
-source ./variables.sh
+SERVICE_NAME=nginx
+HOST_PORT=8080
+CONTAINER_PORT=80
 
 podman create \
-    --name $SERVICE \
-    -p $HOST_PORT:$CONTAINER_PORT $IMAGE
-podman generate systemd $SERVICE --restart-policy=always -t 5 -f -n
-mkdir -p ~/.config/systemd/user
-cp ./container-$SERVICE.service ~/.config/systemd/user/$SERVICE.service
-systemctl enable --user $SERVICE.service
-systemctl start --user $SERVICE.service
-# systemctl status --user $SERVICE.service
+    --name $SERVICE_NAME \
+    -p $HOST_PORT:$CONTAINER_PORT docker.io/library/nginx:1.21.6-alpine
+
+setup-service/launch.sh $SERVICE_NAME

@@ -3,17 +3,14 @@
 # exit when any command fails
 set -e
 
-source ./variables.sh
+SERVICE_NAME=postgres
+PORT=5432
 
 mkdir -p ~/data/postgres
 podman create \
-    --name $SERVICE \
-    --env-file ./envfile.env \
+    --name $SERVICE_NAME \
+    --env-file $PWD/postgres/envfile.env \
     -v ~/data/postgres:/var/lib/postgresql/data \
-    -p $PORT:$PORT $IMAGE
-podman generate systemd $SERVICE --restart-policy=always -t 5 -f -n
-mkdir -p ~/.config/systemd/user
-cp ./container-$SERVICE.service ~/.config/systemd/user/$SERVICE.service
-systemctl enable --user $SERVICE.service
-systemctl start --user $SERVICE.service
-# systemctl status --user $SERVICE.service
+    -p $PORT:$PORT docker.io/library/postgres:14-alpine
+
+setup-service/launch.sh $SERVICE_NAME
