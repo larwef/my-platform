@@ -15,6 +15,20 @@ https://podman.io/blogs/2020/12/09/podman-systemd-demo.html
 https://github.com/edhaynes/podman_systemd_usermode_demo
 
 ## Useful Stuff
+Reload systemd daemon:
+```
+sudo systemctl daemon-reload
+```
+Check service status:
+```
+sudo systemctl status echo-server.service
+```
+
+See service logs:
+```
+journalctl -f -u echo-server.service
+```
+
 See rpi temperature:
 ```
 vcgencmd measure_temp
