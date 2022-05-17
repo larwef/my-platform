@@ -13,7 +13,7 @@ This setup will probably have some lag when the IP changes because:
 Will not be good enough for a production environment, but then one should
 probably not use a setup like this anyways.
 
-Currently using https://ip-api.com/ (http://ip-api.com/json/) to poll public IP.
+Currently using http://ip-api.com/json/ to poll public IP.
 There are, of course, other options. Eg. making a simple lambda in AWS, or a
 cloud function in Google Cloud. This would make the setup more (and
 unnecessarily) complicated for this simple use case. Will however try to keep
