@@ -4,13 +4,15 @@
 set -e
 
 SERVICE_NAME=postgres
+IMAGE=docker.io/grafana/grafana-oss:9.0.6
+DATA_DIR=/var/lib/postgresql/data
 PORT=5432
 
-mkdir -p ~/data/postgres
+mkdir -p ~/data/$SERVICE_NAME
 podman create \
     --name $SERVICE_NAME \
-    --env-file $PWD/postgres/envfile.env \
-    -v ~/data/postgres:/var/lib/postgresql/data \
-    -p $PORT:$PORT docker.io/library/postgres:14-alpine
+    --env-file $PWD/$SERVICE_NAME/envfile.env \
+    -v ~/data/$SERVICE_NAME:$DATA_DIR \
+    -p $PORT:$PORT $IMAGE
 
 setup-service/launch.sh $SERVICE_NAME
