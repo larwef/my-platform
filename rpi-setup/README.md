@@ -21,12 +21,12 @@ sudo systemctl daemon-reload
 ```
 Check service status:
 ```
-sudo systemctl status echo-server.service
+sudo systemctl status <service>.service
 ```
 
 See service logs:
 ```
-journalctl -f -u echo-server.service
+journalctl -f --user-unit <service>.service
 ```
 
 See rpi temperature:
