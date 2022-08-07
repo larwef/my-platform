@@ -10,10 +10,11 @@ PORT=3000
 
 mkdir -p ~/data/$SERVICE_NAME
 # Need this or else Grafana can't write to the data directory.
-chmod -R 777 ~/data/$SERVICE_NAME 
+sudo chmod -R 777 ~/data/$SERVICE_NAME 
 podman create \
     --name $SERVICE_NAME \
     --env-file $PWD/$SERVICE_NAME/envfile.env \
+    --network=host \
     -v ~/data/$SERVICE_NAME:$DATA_DIR \
     -p $PORT:$PORT $IMAGE
 
