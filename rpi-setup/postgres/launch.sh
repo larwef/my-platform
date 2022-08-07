@@ -4,7 +4,7 @@
 set -e
 
 SERVICE_NAME=postgres
-IMAGE=docker.io/grafana/grafana-oss:9.0.6
+IMAGE=docker.io/library/postgres:14-alpine
 DATA_DIR=/var/lib/postgresql/data
 PORT=5432
 
