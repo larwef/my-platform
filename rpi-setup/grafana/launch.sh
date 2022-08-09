@@ -13,6 +13,7 @@ mkdir -p ~/data/$SERVICE_NAME
 sudo chmod -R 777 ~/data/$SERVICE_NAME 
 podman create \
     --name $SERVICE_NAME \
+    --log-driver journald \
     --env-file $PWD/$SERVICE_NAME/envfile.env \
     --network=host \
     -v ~/data/$SERVICE_NAME:$DATA_DIR \
