@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"os/signal"
@@ -66,6 +67,13 @@ func realMain(ctx context.Context) error {
 
 func handler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprint(w, "Hello World!")
+		clientIP, _, err := net.SplitHostPort(r.RemoteAddr)
+		if err != nil {
+			log.Printf("Unable to split remote address: %s\n", r.RemoteAddr)
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+		log.Printf("Received request from %s\n", clientIP)
+		fmt.Fprintf(w, "Hello %s @ %s", clientIP, time.Now().Format(time.RFC3339))
 	}
 }
