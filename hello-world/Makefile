@@ -18,18 +18,18 @@ docker-build:
 compose-up:
 	REPOSITORY=${REPOSITORY} \
 	VERSION=${BUILD_VERSION} \
-	DOMAIN=${DOMAIN}
+	DOMAIN=${DOMAIN} \
 		docker compose -f deployments/docker-compose/docker-compose.yml up --remove-orphans --detach
 
 compose-down:
 	REPOSITORY=${REPOSITORY} \
 	VERSION=${BUILD_VERSION} \
-	DOMAIN=${DOMAIN}
+	DOMAIN=${DOMAIN} \
 		docker compose -f deployments/docker-compose/docker-compose.yml down
 
 compose-logs:
 	(cd deployments/docker-compose && \
 		REPOSITORY=${REPOSITORY} \
 		VERSION=${BUILD_VERSION} \
-		DOMAIN=${DOMAIN}
+		DOMAIN=${DOMAIN} \
 		docker compose logs -f -t)
