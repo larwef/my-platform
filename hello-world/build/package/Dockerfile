@@ -3,6 +3,7 @@ FROM golang:1.20-alpine as build
 
 ARG app_name
 ARG build_version
+ARG port
 
 WORKDIR /app
 
@@ -24,11 +25,15 @@ RUN adduser -S -u 10001 scratchuser
 # FROM scratch as final
 FROM scratch as final
 
+ARG port
+
 COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 COPY --from=base /usr/share/zoneinfo /usr/share/zoneinfo
 COPY --from=base /etc/passwd /etc/passwd
 COPY --from=build /app.bin /app
 
 USER 10001
+
+EXPOSE ${port}
 
 ENTRYPOINT ["/app"]

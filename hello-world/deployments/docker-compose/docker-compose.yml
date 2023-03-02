@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  hello-world:
+    image: "${REPOSITORY}/hello-world:${VERSION}"
+    container_name: "hello-world"
+    restart: "always"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hello-world.rule=PathPrefix(`/hello-world{regex:$$|/.*}`)"
+      - "traefik.http.services.hello-world.loadbalancer.server.port=8080"
+    networks:
+      - common
+
+networks:
+  common:
+    external: true
