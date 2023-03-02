@@ -1,6 +1,6 @@
-REPOSITORY=github.com/larwef
+include config.env
+
 BUILD_VERSION=$(shell git describe --tag --always | sed -e 's,^v,,')
-TARGET=target
 
 APP=hello-world
 
@@ -18,15 +18,18 @@ docker-build:
 compose-up:
 	REPOSITORY=${REPOSITORY} \
 	VERSION=${BUILD_VERSION} \
+	DOMAIN=${DOMAIN}
 		docker compose -f deployments/docker-compose/docker-compose.yml up --remove-orphans --detach
 
 compose-down:
 	REPOSITORY=${REPOSITORY} \
 	VERSION=${BUILD_VERSION} \
+	DOMAIN=${DOMAIN}
 		docker compose -f deployments/docker-compose/docker-compose.yml down
 
 compose-logs:
 	(cd deployments/docker-compose && \
 		REPOSITORY=${REPOSITORY} \
 		VERSION=${BUILD_VERSION} \
+		DOMAIN=${DOMAIN}
 		docker compose logs -f -t)

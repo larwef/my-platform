@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   traefik:
-    image: "traefik:2.3"
+    image: "traefik:${TRAEFIK_VERSION}"
     container_name: "traefik"
     restart: "always"
     ports:

@@ -2,3 +2,4 @@
 /traefik/traefik_dynamic.toml
 /traefik/traefik_dynamic.toml
 /traefik/acme.json
+*config.env

@@ -1,3 +1,5 @@
+include config.env
+
 compose-up:
 	docker compose up --remove-orphans --detach
 
