@@ -1,10 +1,13 @@
 include config.env
 
 compose-up:
-	docker compose up --remove-orphans --detach
+	TRAEFIK_VERSION=${TRAEFIK_VERSION} \
+		docker compose up --remove-orphans --detach
 
 compose-down:
-	docker compose down
+	TRAEFIK_VERSION=${TRAEFIK_VERSION} \
+		docker compose down
 
 compose-logs:
-	docker compose logs -f -t
+	TRAEFIK_VERSION=${TRAEFIK_VERSION} \
+		docker compose logs -f -t
