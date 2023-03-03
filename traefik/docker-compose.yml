@@ -12,7 +12,7 @@ services:
       - "./traefik.toml:/traefik.toml"
       - "./traefik_dynamic.toml:/traefik_dynamic.toml"
       - "./acme.json:/acme.json"
-      - "./logs/access.log:/logs/access.log"
+      - "./logs:/logs"
     networks:
       - common
 
