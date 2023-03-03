@@ -26,3 +26,7 @@
 
 [providers.file]
   filename = "traefik_dynamic.toml"
+
+[accessLog]
+  filePath = "logs/access.log"
+  format = "json"
