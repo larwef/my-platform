@@ -3,4 +3,5 @@
 /traefik/traefik_dynamic.toml
 /traefik/acme.json
 /traefik/logs
+/grafana/data
 *config.env
