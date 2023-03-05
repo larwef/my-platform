@@ -7,10 +7,10 @@ compose-up:
 
 compose-down:
 	PROMETHEUS_VERSION=${PROMETHEUS_VERSION} \
-	DOMAIN=${DOMAIN} \	
+	DOMAIN=${DOMAIN} \
 		docker compose down
 
 compose-logs:
 	PROMETHEUS_VERSION=${PROMETHEUS_VERSION} \
-	DOMAIN=${DOMAIN} \	
+	DOMAIN=${DOMAIN} \
 		docker compose logs -f -t
