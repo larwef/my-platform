@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  prometheus:
+    image: "prom/prometheus:${PROMETHEUS_VERSION}"
+    container_name: "prometheus"
+    restart: "always"
+    volumes:
+      - "./data:/prometheus"
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`${DOMAIN}`)"
+      - 'traefik.http.routers.prometheus.middlewares=simpleAuth@file'
+      - "traefik.http.services.prometheus.loadbalancer.server.port=9090"
+    networks:
+      - common
+
+networks:
+  common:
+    external: true
