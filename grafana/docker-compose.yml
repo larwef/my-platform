@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  grafana:
+    image: "grafana/grafana-oss:${GRAFANA_VERSION}"
+    container_name: "grafana"
+    restart: "always"
+    volumes:
+      - "./data:/var/lib/grafana"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"      
+    networks:
+      - common
+
+networks:
+  common:
+    external: true
