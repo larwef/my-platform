@@ -30,3 +30,6 @@
 [accessLog]
   filePath = "logs/access.log"
   format = "json"
+
+[metrics]
+  [metrics.prometheus]
