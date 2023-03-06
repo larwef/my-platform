@@ -5,13 +5,16 @@ services:
     container_name: "grafana"
     restart: "always"
     volumes:
-      - "./data:/var/lib/grafana"
+      - "grafana_data:/var/lib/grafana"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`${DOMAIN}`)"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"      
     networks:
       - common
+
+volumes:
+  grafana_data: {}
 
 networks:
   common:
