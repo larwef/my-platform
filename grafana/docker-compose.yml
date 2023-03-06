@@ -4,6 +4,8 @@ services:
     image: "grafana/grafana-oss:${GRAFANA_VERSION}"
     container_name: "grafana"
     restart: "always"
+    environment:
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
     volumes:
       - "grafana_data:/var/lib/grafana"
     labels:
