@@ -33,6 +33,17 @@ services:
     networks:
       - common
 
+  cadvisor:
+    image: "gcr.io/cadvisor/cadvisor:${CADVISOR_VERSION}"
+    container_name: "cadvisor"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+
 volumes:
   prometheus_data: {}
 
